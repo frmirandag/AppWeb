@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   // Define una propiedad para controlar la clase de la imagen
   imageClass = 'centered-image';
+isResponsive: any;
 
   constructor() {}
 
