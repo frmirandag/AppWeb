@@ -1,0 +1,22 @@
+/* carrito.component.css */
+
+/* Estilos para el contenedor del carrito */
+#cart_div {
+    margin-top: 50px; /* Espacio superior para separar del contenido superior */
+  }
+  
+  /* Estilos para los elementos de la lista del carrito */
+  #cart-items {
+    margin-bottom: 20px; /* Espacio inferior para separar del botón de checkout */
+  }
+  
+  /* Estilo para el botón de eliminar dentro de cada elemento del carrito */
+  #cart-items .btn-danger {
+    float: right; /* Botón de eliminar alineado a la derecha dentro de cada elemento */
+  }
+  
+  /* Estilo para el botón de checkout */
+  .btn-success {
+    margin-top: 10px; /* Espacio superior para separar del contenido inferior */
+  }
+  

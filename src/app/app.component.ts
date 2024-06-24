@@ -1,13 +1,26 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    ContactoComponent,
+    FormularioComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'AppWeb';
+
+  logout() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = '/login.html';
+  }
 }

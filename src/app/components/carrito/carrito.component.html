@@ -1,0 +1,13 @@
+<article id="cart_div">
+    <h2 class="text-center">Carrito de Compras</h2>
+    <div class="container">
+      <ul id="cart-items" class="list-group list-group-flush mb-3">
+        <li *ngFor="let item of cart" class="list-group-item">
+          {{ item.name }} - ${{ item.price }}
+          <button (click)="removeFromCart(item)" class="btn btn-danger btn-sm ml-2">Eliminar</button>
+        </li>
+      </ul>
+      <button (click)="checkout()" class="btn btn-success btn-block">Proceder al Pago</button>
+    </div>
+  </article>
+  
