@@ -1,4 +1,15 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+/**
+ * Interfaz que define la estructura de un usuario.
+ */
+interface User {
+  username: string;
+  password: string;
+  role: string;
+}
 
 /**
  * Componente para la autenticación de usuarios.
@@ -14,45 +25,70 @@ export class LoginComponent {
   errorMessage(errorMessage: any) {
     throw new Error('Method not implemented.');
   }
-  showPopup(showPopup: any) {
-    throw new Error('Method not implemented.');
-  }
   login(login: any) {
     throw new Error('Method not implemented.');
   }
-
-  /** Mensaje de estado del inicio de sesión, que se muestra en caso de error de autenticación. */
-  loginMessage: string = '';
-
-  constructor() {}
+  showPopup(showPopup: any) {
+    throw new Error('Method not implemented.');
+  }
 
   /**
-   * Maneja el evento de envío del formulario de inicio de sesión.
-   * Realiza la autenticación básica utilizando valores estáticos para demostración.
+   * Formulario de inicio de sesión construido con FormBuilder.
+   */
+  loginForm: FormGroup;
+
+  /**
+   * Mensaje de estado del inicio de sesión, que se muestra en caso de error de autenticación.
+   */
+  loginMessage: string = '';
+
+  /**
+   * Lista estática de usuarios para demostración.
+   */
+  users: User[] = [
+    { username: 'admin', password: 'admin123', role: 'admin' },
+    { username: 'user', password: 'user123', role: 'user' }
+  ];
+
+  /**
+   * Constructor del componente LoginComponent.
    * 
-   * @returns {void}
+   * @param router Instancia del enrutador de Angular para la navegación.
+   * @param formBuilder Instancia de FormBuilder para la construcción del formulario.
+   */
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    // Inicializa el formulario de inicio de sesión con validadores requeridos
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  /**
+   * Método invocado al enviar el formulario de inicio de sesión.
+   * Realiza la autenticación básica comparando el usuario ingresado con la lista de usuarios estáticos.
+   * Si la autenticación es exitosa, almacena el usuario en localStorage y redirige a la página principal.
+   * Si las credenciales no son válidas, muestra un mensaje de error.
    */
   onSubmit(): void {
-    const username = (document.getElementById('username') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
+    if (this.loginForm.invalid) {
+      return;
+    }
 
-    // Lista estática de usuarios para demostración
-    const users = [
-      { username: 'admin', password: 'admin123', role: 'admin' },
-      { username: 'user', password: 'user123', role: 'user' }
-    ];
+    const username = this.loginForm.value.username;
+    const password = this.loginForm.value.password;
 
-    // Busca el usuario en la lista por nombre de usuario y contraseña
-    const user = users.find(u => u.username === username && u.password === password);
+    const user = this.users.find(u => u.username === username && u.password === password);
 
     if (user) {
-      // Almacena el usuario autenticado en el almacenamiento local
       localStorage.setItem('loggedInUser', JSON.stringify(user));
-      // Redirige a la página principal después de la autenticación
-      window.location.href = '/index.html'; // Ajusta la URL según tu estructura de archivos
+      this.router.navigate(['/']); // Redirige a la página principal después de la autenticación
     } else {
-      // Muestra un mensaje de error si las credenciales no son válidas
       this.loginMessage = 'Nombre de usuario o contraseña incorrectos';
     }
   }
+
 }
