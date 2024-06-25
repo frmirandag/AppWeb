@@ -1,13 +1,37 @@
 <article id="cart_div">
-    <h2 class="text-center">Carrito de Compras</h2>
-    <div class="container">
-      <ul id="cart-items" class="list-group list-group-flush mb-3">
-        <li *ngFor="let item of cart" class="list-group-item">
-          {{ item.name }} - ${{ item.price }}
-          <button (click)="removeFromCart(item)" class="btn btn-danger btn-sm ml-2">Eliminar</button>
-        </li>
-      </ul>
-      <button (click)="checkout()" class="btn btn-success btn-block">Proceder al Pago</button>
+  <h2 class="text-center">Carrito de Compras</h2>
+  <div class="container">
+    <!-- Mostrar mensaje si el carrito está vacío -->
+    <div *ngIf="cart.length === 0" class="alert alert-info text-center">
+      El carrito está vacío
     </div>
-  </article>
-  
+
+    <!-- Lista de elementos del carrito -->
+    <ul id="cart-items" class="list-group list-group-flush mb-3" *ngIf="cart.length > 0">
+      <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ item.name }} - ${{ item.price }}</span>
+        <button (click)="removeFromCart(item)" class="btn btn-danger btn-sm">Eliminar</button>
+      </li>
+    </ul>
+
+    <!-- Mostrar subtotal y total -->
+    <div *ngIf="cart.length > 0">
+      <div class="text-right mb-3">
+        <strong>Subtotal: ${{ calculateSubtotal() }}</strong>
+      </div>
+      <div class="text-right mb-3">
+        <strong>Total: ${{ calculateTotal() }}</strong>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="row">
+      <div class="col-md-6">
+        <button (click)="checkout()" class="btn btn-success btn-block">Proceder al Pago</button>
+      </div>
+      <div class="col-md-6">
+        <button (click)="clearCart()" class="btn btn-outline-danger btn-block">Vaciar Carrito</button>
+      </div>
+    </div>
+  </div>
+</article>

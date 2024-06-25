@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,6 @@ export class AppComponent {
 
   logout() {
     localStorage.removeItem('loggedInUser');
-    window.location.href = '/login.html';
+    window.location.href = '/login';
   }
 }
