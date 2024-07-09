@@ -5,6 +5,9 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductosComponent } from './components/productos/productos.component';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-root',
