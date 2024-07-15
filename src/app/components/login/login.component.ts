@@ -16,6 +16,7 @@ interface User {
  * 
  * Este componente maneja el formulario de inicio de sesión y realiza la autenticación básica.
  */
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,13 +24,13 @@ interface User {
 })
 export class LoginComponent {
   errorMessage(errorMessage: any) {
-    throw new Error('Method not implemented.');
+    throw new Error('Method not implemented .');
   }
   login(login: any) {
-    throw new Error('Method not implemented.');
+    throw new Error('Method not implemented .');
   }
   showPopup(showPopup: any) {
-    throw new Error('Method not implemented.');
+    throw new Error('Method not implemented .');
   }
 
   /**
